@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/home_page.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+
+import 'pages/login_page.dart';
 
 void main() {
   runApp(const PandaShopApp());
@@ -10,14 +13,20 @@ class PandaShopApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Panda Shop – Football Shop',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.green,
+    return Provider(
+      create: (_) => CookieRequest(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Panda Shop",
+        theme: ThemeData(
+          fontFamily: "Inter",
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF79B84C),
+          ),
+          useMaterial3: true,
+        ),
+        home: const LoginPage(),
       ),
-      home: const HomePage(),
     );
   }
 }
